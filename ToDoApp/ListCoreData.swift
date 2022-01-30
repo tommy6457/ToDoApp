@@ -11,8 +11,6 @@ import CoreData
 
 struct ListCoreData {
     
-    let entityName = "ToDoData"
-    
     static let shared = ListCoreData()
     
     //Read Core Data
