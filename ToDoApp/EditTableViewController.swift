@@ -8,15 +8,16 @@
 import UIKit
 
 enum DataStatus {
-    case insert , update
+    case insert , update , read
 }
 
 class EditTableViewController: UITableViewController {
     
     internal init?(status: DataStatus? = nil, todoData: ToDoData? = nil, coder: NSCoder) {
-        super.init(coder: coder)
+        
         self.status = status
         self.todoData = todoData
+        super.init(coder: coder)
     }
     
     required init?(coder: NSCoder) {
@@ -53,17 +54,26 @@ class EditTableViewController: UITableViewController {
         desTextView.layer.borderWidth = 0.3
         
         //最小日期為今天
-        datePicker.minimumDate = Date()
-        
         if let todoData = todoData {
             nameTextField.text = todoData.name
             desTextView.text = todoData.descript
             datePicker.date = todoData.date!
+            datePicker.minimumDate = todoData.date!
+        }else{
+            datePicker.minimumDate = Date()
         }
         
         //更新畫面
         updateUI()
         
+        
+        if status == .read {
+            self.tableView.isUserInteractionEnabled = false
+            navigationItem.rightBarButtonItem?.isEnabled = false
+        }else{
+            self.tableView.isUserInteractionEnabled = true
+            navigationItem.rightBarButtonItem?.isEnabled = true
+        }
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -101,6 +111,9 @@ class EditTableViewController: UITableViewController {
                 }
                 
                 
+            case .read:
+                
+                return true
                 
             case .none:
                 return false

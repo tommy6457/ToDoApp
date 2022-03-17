@@ -10,6 +10,7 @@ import UIKit
 class ListTableViewController: UITableViewController {
     
     var todoDataList: [ToDoData]?
+    var status = DataStatus.insert
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,13 +41,13 @@ class ListTableViewController: UITableViewController {
         
         return EditTableViewController(status: .insert, coder: coder)
     }
-    
+    //點擊編輯去下一頁
     @IBSegueAction func clickSwipeEditToEditController(_ coder: NSCoder, sender: Any?) -> EditTableViewController? {
         
         guard let todoData = sender as? ToDoData else {
             return EditTableViewController(status: .insert, coder: coder) }
         
-        return EditTableViewController(status: .update, todoData: todoData, coder: coder)
+        return EditTableViewController(status: status, todoData: todoData, coder: coder)
         
     }
                                        
@@ -63,6 +64,8 @@ class ListTableViewController: UITableViewController {
                 cell.toDoButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
                 cell.contentView.alpha = 1
             }
+            cell.toDoButton.tag = indexPath.row
+            cell.toDoButton.addTarget(self, action: #selector(selectTodoButton), for: .touchUpInside)
             
             cell.toDoNameLabel.text = todoData.name
             cell.todoDateLabel.text = ListCoreData.shared.fomatingDate(date: todoData.date!)
@@ -73,18 +76,23 @@ class ListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        status = .read
+        
         let todoData = todoDataList![indexPath.row]
-        todoData.done.toggle()
-        tableView.deselectRow(at: indexPath, animated: true)
         
-        do {
-            try ListCoreData.shared.updateData(todoData: todoData)
-        } catch let error {
-            showAlert(message: error.localizedDescription)
-            return
-        }
+        self.performSegue(withIdentifier: "clickSwipeEditToEditController", sender: todoData)
         
-        tableView.reloadData()
+//        todoData.done.toggle()
+//        tableView.deselectRow(at: indexPath, animated: true)
+//
+//        do {
+//            try ListCoreData.shared.updateData(todoData: todoData)
+//        } catch let error {
+//            showAlert(message: error.localizedDescription)
+//            return
+//        }
+//
+//        tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -115,6 +123,8 @@ class ListTableViewController: UITableViewController {
         //edit按鈕
         let edit = UIContextualAction(style: .normal, title: "Edit") { action, view, bool in
             
+            self.status = .update
+            
             self.performSegue(withIdentifier: "clickSwipeEditToEditController", sender: todoData)
             
             bool(true)
@@ -140,6 +150,23 @@ class ListTableViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
         
     }
+    
+    @objc func selectTodoButton(sender: UIButton){
+        
+        let todoData = todoDataList![sender.tag]
+        todoData.done.toggle()
+        
+        do {
+            try ListCoreData.shared.updateData(todoData: todoData)
+        } catch let error {
+            showAlert(message: error.localizedDescription)
+            return
+        }
+        
+        tableView.reloadData()
+        
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

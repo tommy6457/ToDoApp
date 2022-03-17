@@ -160,23 +160,23 @@
                             <tableViewSection headerTitle="日期" id="LuV-s0-i9M">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="mXk-Eb-uw3">
-                                        <rect key="frame" x="0.0" y="383.5" width="414" height="101"/>
+                                        <rect key="frame" x="0.0" y="383.5" width="414" height="104"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mXk-Eb-uw3" id="4jU-tX-Kk3">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="101"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="104"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="06A-G5-AMX">
-                                                    <rect key="frame" x="25" y="16" width="364" height="69"/>
+                                                    <rect key="frame" x="25" y="16" width="364" height="72"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="完成日期:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0x-w1-ltW">
-                                                            <rect key="frame" x="0.0" y="0.0" width="74" height="69"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="74" height="72"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bff-fM-c1s">
-                                                            <rect key="frame" x="82" y="0.0" width="282" height="69"/>
+                                                            <rect key="frame" x="82" y="0.0" width="282" height="72"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -193,7 +193,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="grf-rC-ZWJ">
-                                        <rect key="frame" x="0.0" y="484.5" width="414" height="226.5"/>
+                                        <rect key="frame" x="0.0" y="487.5" width="414" height="226.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="grf-rC-ZWJ" id="CNU-F1-bSD">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="226.5"/>
